@@ -17,7 +17,16 @@ links_incorrect = get_elements(soup, "a", "class", "property-card-link")
 # the links repeat themselfs twice, next to each other
 # created a second list that does not have repeated elements
 uncleaned_links = [links_incorrect[i] for i in range(0, len(links_incorrect)) if i % 2 == 0]
-
+links = list()
+# putting https on links that does not have it
+https = "https://www.zillow.com"
+for link in uncleaned_links:
+    # when the link does not contain https
+    if link[0:len(https)] != https:
+        link = https + link
+    links.append(link)
+print(links)
+print(len(links))
 
 time.sleep(3600)
 
