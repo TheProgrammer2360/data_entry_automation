@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from helpers import get_elements
 import time
 
 # using selenium and Beautiful soup
@@ -8,7 +9,6 @@ driver = webdriver.Chrome(executable_path="/chromedriver.exe")
 driver.get(url=URL)
 driver.maximize_window()
 # create  soup and then close the driver
-soup = BeautifulSoup(driver.page_source, "html.parser")
 
 time.sleep(3600)
 
