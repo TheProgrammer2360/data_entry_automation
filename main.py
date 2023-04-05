@@ -9,6 +9,15 @@ driver = webdriver.Chrome(executable_path="/chromedriver.exe")
 driver.get(url=URL)
 driver.maximize_window()
 # create  soup and then close the driver
+soup = BeautifulSoup(driver.page_source, "html.parser")
+prices = get_elements(soup, "span", "data-test", "property-card-price")
+addresses = get_elements(soup, "address", "data-test", "property-card-addr")
+# after every link there empty string, get rid of of all empty strings
+links_incorrect = get_elements(soup, "a", "class", "property-card-link")
+# the links repeat themselfs twice, next to each other
+# created a second list that does not have repeated elements
+uncleaned_links = [links_incorrect[i] for i in range(0, len(links_incorrect)) if i % 2 == 0]
+
 
 time.sleep(3600)
 
