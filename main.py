@@ -38,27 +38,34 @@ for link in uncleaned_links:
 
 form_url = "https://docs.google.com/forms/d/e/1FAIpQLSeIg1Mac9uMOdxPmaq4FWIvrlwayiWDKNFXZ30RSxFu71Nc6Q/viewform?usp=sf_link"
 driver.get(url=form_url)
-# wait 2 seconds and start inputting data, to make the program behave like a human
-time.sleep(2)
-# fill in the first question
-q_xpath = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input"
-a_input = driver.find_element(By.XPATH, q_xpath)
-a_input.send_keys(addresses[0])
-# wait 2 seconds and then fill in the second question
-time.sleep(2)
-q_xpath = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div[1]/input"
-a_input = driver.find_element(By.XPATH, q_xpath)
-a_input.send_keys(prices[0])
-# wait answer 2 seconds and start filling in the 3rd and last question
-time.sleep(2)
-q_xpath = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input"
-a_input = driver.find_element(By.XPATH, q_xpath)
-a_input.send_keys(links[0])
-# wait one second and then start clicking the submit button
-time.sleep(1)
-q_xpath = "/html/body/div/div[2]/form/div[2]/div/div[3]/div[1]/div[1]/div"
-submit_button = driver.find_element(By.XPATH, q_xpath)
-submit_button.click()
-time.sleep(3600)
+# fill the form for all the data
+for i in range(0, len(links)):
+    # wait 2 seconds and start inputting data, to make the program behave like a human
+    time.sleep(2)
+    # fill in the first question
+    q_xpath = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input"
+    a_input = driver.find_element(By.XPATH, q_xpath)
+    a_input.send_keys(addresses[i])
+    # wait 2 seconds and then fill in the second question
+    time.sleep(2)
+    q_xpath = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div[1]/input"
+    a_input = driver.find_element(By.XPATH, q_xpath)
+    a_input.send_keys(prices[i])
+    # wait answer 2 seconds and start filling in the 3rd and last question
+    time.sleep(2)
+    q_xpath = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input"
+    a_input = driver.find_element(By.XPATH, q_xpath)
+    a_input.send_keys(links[i])
+    # wait one second and then start clicking the submit button
+    time.sleep(1)
+    q_xpath = "/html/body/div/div[2]/form/div[2]/div/div[3]/div[1]/div[1]/div"
+    submit_button = driver.find_element(By.XPATH, q_xpath)
+    submit_button.click()
+    # wait 2 seconds and then go back to the form
+    time.sleep(2)
+    q_xpath = "/html/body/div[1]/div[2]/div[1]/div/div[4]/a"
+    a_input = driver.find_element(By.XPATH, q_xpath)
+    a_input.click()
+print("Done with filling all the enteries")
 
 driver.close()
